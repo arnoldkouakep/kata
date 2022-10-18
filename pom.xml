@@ -15,4 +15,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<modules>
+		<module>diamond</module>
+	</modules>
 </project>
