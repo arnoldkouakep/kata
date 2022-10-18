@@ -17,5 +17,6 @@
 	</dependencies>
 	<modules>
 		<module>diamond</module>
+		<module>foo-bar-qix</module>
 	</modules>
 </project>
