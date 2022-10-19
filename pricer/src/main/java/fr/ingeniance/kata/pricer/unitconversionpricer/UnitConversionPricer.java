@@ -12,19 +12,14 @@ import fr.ingeniance.kata.pricer.exception.ProductNotFoundException;
 
 public class UnitConversionPricer {
 
-	protected static final Map<String, Double> conversionArray = new HashMap<String, Double>() {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
+	protected static final Map<String, Double> conversionArray = new HashMap<>();
 
-		{
-			put(EnumStatus.POUND.toString(), 16D);
-			put(EnumStatus.KILOGRAMM.toString(), 35.274D);
-			put(EnumStatus.GRAMM.toString(), 0.035274D);
-			put(EnumStatus.OUNCE.toString(), 1D);
-		}
-	};
+	static {
+		conversionArray.put(EnumStatus.POUND.toString(), 16D);
+		conversionArray.put(EnumStatus.KILOGRAMM.toString(), 35.274D);
+		conversionArray.put(EnumStatus.GRAMM.toString(), 0.035274D);
+		conversionArray.put(EnumStatus.OUNCE.toString(), 1D);
+	}
 
 	private UnitConversionPricer() {
 		throw new IllegalStateException("UnitConversionPricer class");
