@@ -19,5 +19,6 @@
 		<module>diamond</module>
 		<module>foo-bar-qix</module>
 		<module>roman</module>
+		<module>pricer</module>
 	</modules>
 </project>
