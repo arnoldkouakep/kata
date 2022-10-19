@@ -5,10 +5,13 @@ import java.util.logging.Logger;
 
 import fr.ingeniance.kata.pricer.data.Item;
 import fr.ingeniance.kata.pricer.data.Product;
+import fr.ingeniance.kata.pricer.enumeration.EnumStatus;
+import fr.ingeniance.kata.pricer.exception.BadUnitConversionException;
 import fr.ingeniance.kata.pricer.exception.ItemErrorException;
 import fr.ingeniance.kata.pricer.exception.ProductNotFoundException;
 import fr.ingeniance.kata.pricer.simple.SimplePricer;
 import fr.ingeniance.kata.pricer.treeforonedollar.ThreeForOneDollarPricer;
+import fr.ingeniance.kata.pricer.unitconversionpricer.UnitConversionPricer;
 
 public class MainApplication {
 
@@ -25,15 +28,20 @@ public class MainApplication {
 
 		printSimplePricer(item);
 
-		Product product2 = new Product(1L, "P002", null, "beans");
-		Item item2 = new Item(1L, product2, null, 0.65D);
+		product.setConditionnement(null);
+		Item item2 = new Item(1L, product, null, 0.65D);
 		printSimplePricer(item2);
 
-		Product product3 = new Product(1L, "P003", "can", "beans");
-		Item item3 = new Item(1L, product3, 3, 1D);
+		Item item3 = new Item(1L, product, 3, 1D);
 		printThreeForOneDollarPricer(item3, 4);
 
 		printThreeForOneDollarPricer(item3, 5);
+		
+		
+		product.setUnit(EnumStatus.POUND.toString());
+		Item item4 = new Item(1L, product, 1, 1.99D);
+		printUnitConversionPricer(item4, EnumStatus.OUNCE, 4);
+		printUnitConversionPricer(item3, EnumStatus.KILOGRAMM, 4);
 
 	}
 
@@ -58,6 +66,19 @@ public class MainApplication {
 				e.printStackTrace();
 			}
 			return null;
+		});
+	}
+
+	public static void printUnitConversionPricer(final Item item, final EnumStatus unit, final int qte) {
+		logger.log(Level.INFO, () -> {
+			try {
+				return UnitConversionPricer.unitConversionPriver(item, unit.toString(), qte);
+			} catch (ProductNotFoundException | ItemErrorException | BadUnitConversionException e) {
+				logger.log(Level.SEVERE, e.getMessage());
+				e.printStackTrace();
+			}
+			return null;
+
 		});
 	}
 }
