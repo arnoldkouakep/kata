@@ -7,10 +7,10 @@ import org.junit.Test;
 
 import fr.ingeniance.kata.foobarqix.exception.NotFooBarQixException;
 
-class TestFooBarQix {
+public class TestFooBarQix {
 
 	@Test
-	void whenExceptionThrown_thenNumberIsNegative() throws Exception {
+	public void whenExceptionThrown_thenNumberIsNegative() throws Exception {
 
 		NotFooBarQixException ex = assertThrows(NotFooBarQixException.class, () -> {
 			FooBarQix.printFooBarQix(-1);
@@ -21,27 +21,27 @@ class TestFooBarQix {
 	}
 
 	@Test
-	void printFooBarQixTest51() throws Exception {
+	public void printFooBarQixTest51() throws Exception {
 		assertEquals("FooBar", FooBarQix.printFooBarQix(51));
 	}
 
 	@Test
-	void printFooBarQixTest53() throws Exception {
+	public void printFooBarQixTest53() throws Exception {
 		assertEquals("BarFoo", FooBarQix.printFooBarQix(53));
 	}
 
 	@Test
-	void printFooBarQixTest13() throws Exception {
+	public void printFooBarQixTest13() throws Exception {
 		assertEquals("Foo", FooBarQix.printFooBarQix(13));
 	}
 
 	@Test
-	void printFooBarQixTes15() throws Exception {
+	public void printFooBarQixTes15() throws Exception {
 		assertEquals("FooBarBar", FooBarQix.printFooBarQix(15));
 	}
 
 	@Test
-	void printFooBarQixTest33() throws Exception {
+	public void printFooBarQixTest33() throws Exception {
 		assertEquals("FooFooFoo", FooBarQix.printFooBarQix(33));
 	}
 }
