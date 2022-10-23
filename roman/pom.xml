@@ -6,16 +6,4 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>roman</artifactId>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>fr.ingeniance</groupId>
-				<artifactId>roman</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-				<configuration>
-					<mainClass>fr.ingeniance.kata.roman.MainApplication</mainClass>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
