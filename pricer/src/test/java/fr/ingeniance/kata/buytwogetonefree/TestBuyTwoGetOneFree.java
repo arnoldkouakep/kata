@@ -12,10 +12,10 @@ import fr.ingeniance.kata.pricer.enumeration.WeigthUnit;
 import fr.ingeniance.kata.pricer.exception.BadUnitConversionException;
 import fr.ingeniance.kata.pricer.unitconversionpricer.UnitConversionPricer;
 
-class TestBuyTwoGetOneFree {
+public class TestBuyTwoGetOneFree {
 
 	@Test
-	void whenExceptionThrown_thenUnitIsNull() throws Exception {
+	public void whenExceptionThrown_thenUnitIsNull() throws Exception {
 
 		Product product = new Product("beans", "can");
 		Item item = new Item(product, 1, 1D);
@@ -29,7 +29,7 @@ class TestBuyTwoGetOneFree {
 	}
 
 	@Test
-	void whenExceptionThrown_thenUnitNotInRanger() throws Exception {
+	public void whenExceptionThrown_thenUnitNotInRanger() throws Exception {
 
 		Product product = new Product("bean", "can", WeigthUnit.POUND.toString());
 		Item item = new Item(product, 1, 1.99D);
@@ -43,21 +43,21 @@ class TestBuyTwoGetOneFree {
 	}
 
 	@Test
-	void printBuyTwoGetOneFreeWith3() throws Exception {
+	public void printBuyTwoGetOneFreeWith3() throws Exception {
 
 		Product product = new Product("beans", "can");
 		Item item = new Item(product, 1, 1D);
 
-		assertEquals(0.75D, BuyTwoGetOneFree.buyTwoGetOneFree(item, 3));
+		assertEquals(0.75D, BuyTwoGetOneFree.buyTwoGetOneFree(item, 3), 0D);
 	}
 
 	@Test
-	void printBuyTwoGetOneFreeWith7() throws Exception {
+	public void printBuyTwoGetOneFreeWith7() throws Exception {
 
 		Product product = new Product("beans", "can");
 		Item item = new Item(product, 1, 1D);
 
-		assertEquals(0.70D, BuyTwoGetOneFree.buyTwoGetOneFree(item, 7));
+		assertEquals(0.70D, BuyTwoGetOneFree.buyTwoGetOneFree(item, 7), 0D);
 	}
 
 }

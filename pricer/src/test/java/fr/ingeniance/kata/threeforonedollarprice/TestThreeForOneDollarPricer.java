@@ -11,10 +11,10 @@ import fr.ingeniance.kata.pricer.exception.ItemErrorException;
 import fr.ingeniance.kata.pricer.exception.ProductNotFoundException;
 import fr.ingeniance.kata.pricer.treeforonedollar.ThreeForOneDollarPricer;
 
-class TestThreeForOneDollarPricer {
+public class TestThreeForOneDollarPricer {
 
 	@Test
-	void whenExceptionThrown_thenProductIsNull() throws Exception {
+	public void whenExceptionThrown_thenProductIsNull() throws Exception {
 
 		Item item = new Item(null, 1, 0.65D);
 
@@ -27,7 +27,7 @@ class TestThreeForOneDollarPricer {
 	}
 
 	@Test
-	void whenExceptionThrown_thenItemAmountIsNegative() throws Exception {
+	public void whenExceptionThrown_thenItemAmountIsNegative() throws Exception {
 
 		Product product = new Product("beans", "can");
 		Item item = new Item(product, 1, -0.65D);
@@ -41,7 +41,7 @@ class TestThreeForOneDollarPricer {
 	}
 
 	@Test
-	void whenExceptionThrown_thenItemUnityIsNull() throws Exception {
+	public void whenExceptionThrown_thenItemUnityIsNull() throws Exception {
 
 		Product product = new Product("beans", "can");
 		Item item = new Item(product, null, 1D);
@@ -55,7 +55,7 @@ class TestThreeForOneDollarPricer {
 	}
 
 	@Test
-	void whenExceptionThrown_thenItemUnityIsNegative() throws Exception {
+	public void whenExceptionThrown_thenItemUnityIsNegative() throws Exception {
 
 		Product product = new Product("beans", "can");
 		Item item = new Item(product, -1, 1D);
@@ -69,21 +69,21 @@ class TestThreeForOneDollarPricer {
 	}
 
 	@Test
-	void printThreeForOneDollarTestWith4() throws Exception {
+	public void printThreeForOneDollarTestWith4() throws Exception {
 
 		Product product = new Product("beans", "can");
 		Item item = new Item(product, 3, 1D);
 
-		assertEquals(2.0D, ThreeForOneDollarPricer.threeForOneDollar(item, 4));
+		assertEquals(2.0D, ThreeForOneDollarPricer.threeForOneDollar(item, 4), 0D);
 	}
 
 	@Test
-	void printThreeForOneDollarTestWith5() throws Exception {
+	public void printThreeForOneDollarTestWith5() throws Exception {
 
 		Product product = new Product("beans", null);
 		Item item = new Item(product, 3, 1D);
 
-		assertEquals(2.0D, ThreeForOneDollarPricer.threeForOneDollar(item, 5));
+		assertEquals(2.0D, ThreeForOneDollarPricer.threeForOneDollar(item, 5), 0D);
 	}
 
 }

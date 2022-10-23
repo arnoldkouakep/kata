@@ -7,13 +7,14 @@ import org.junit.Test;
 
 import fr.ingeniance.kata.pricer.data.Item;
 import fr.ingeniance.kata.pricer.data.Product;
+import fr.ingeniance.kata.pricer.exception.ItemErrorException;
 import fr.ingeniance.kata.pricer.exception.ProductNotFoundException;
 import fr.ingeniance.kata.pricer.simple.SimplePricer;
 
-class TestSimplePricer {
+public class TestSimplePricer {
 
 	@Test
-	void whenExceptionThrown_thenProductIsNull() throws Exception {
+	public void whenExceptionThrown_thenProductIsNull() throws Exception {
 
 		Item item = new Item(null, 1, 0.65D);
 
@@ -26,12 +27,12 @@ class TestSimplePricer {
 	}
 
 	@Test
-	void whenExceptionThrown_thenItemAmountIsNegative() throws Exception {
+	public void whenExceptionThrown_thenItemAmountIsNegative() throws Exception {
 
 		Product product = new Product("beans", "can");
 		final Item item = new Item(product, 1, -0.65D);
 
-		ProductNotFoundException ex = assertThrows(ProductNotFoundException.class, () -> {
+		ItemErrorException ex = assertThrows(ItemErrorException.class, () -> {
 			SimplePricer.simplePriceOfProduct(item);
 		});
 
@@ -40,16 +41,16 @@ class TestSimplePricer {
 	}
 
 	@Test
-	void printSimplePriceTest1() throws Exception {
+	public void printSimplePriceTest1() throws Exception {
 
-		Product product = new Product("can", "beans");
+		Product product = new Product("beans", "can");
 		Item item = new Item(product, 1, 0.65D);
 
 		assertEquals("This can of beans costs 0.65$", SimplePricer.simplePriceOfProduct(item));
 	}
 
 	@Test
-	void printSimplePriceTest2() throws Exception {
+	public void printSimplePriceTest2() throws Exception {
 
 		Product product = new Product("beans", null);
 		Item item = new Item(product, 1, 0.65D);
