@@ -6,16 +6,4 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>foo-bar-qix</artifactId>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>fr.ingeniance</groupId>
-				<artifactId>foo-bar-qix</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-				<configuration>
-					<mainClass>fr.ingeniance.kata.foobarqix.MainApplication</mainClass>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
