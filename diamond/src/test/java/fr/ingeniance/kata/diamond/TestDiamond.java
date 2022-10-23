@@ -7,10 +7,10 @@ import org.junit.Test;
 
 import fr.ingeniance.kata.diamond.exception.DiamondException;
 
-class TestDiamond {
+public class TestDiamond {
 
 	@Test
-	void whenExceptionThrown_thenLetterIsBad() throws Exception {
+	public void whenExceptionThrown_thenLetterIsBad() throws Exception {
 
 		DiamondException ex = assertThrows(DiamondException.class, () -> {
 			Diamond.printDiamond("-");
@@ -20,7 +20,7 @@ class TestDiamond {
 	}
 
 	@Test
-	void whenExceptionThrown_thenLetterIsEmpty() throws Exception {
+	public void whenExceptionThrown_thenLetterIsEmpty() throws Exception {
 
 		DiamondException ex = assertThrows(DiamondException.class, () -> {
 			Diamond.printDiamond("");
@@ -31,7 +31,7 @@ class TestDiamond {
 	}
 
 	@Test
-	void whenExceptionThrown_thenSizeLetterIsMoreThanOne() throws Exception {
+	public void whenExceptionThrown_thenSizeLetterIsMoreThanOne() throws Exception {
 
 		DiamondException ex = assertThrows(DiamondException.class, () -> {
 			Diamond.printDiamond("ab");
@@ -42,17 +42,17 @@ class TestDiamond {
 	}
 
 	@Test
-	void printDiamondTesta() throws Exception {
+	public void printDiamondTesta() throws Exception {
 		assertEquals("a\n", Diamond.printDiamond("a"));
 	}
 
 	@Test
-	void printDiamondTestb() throws Exception {
+	public void printDiamondTestb() throws Exception {
 		assertEquals("\ta\nb\t\tb\n\ta\n", Diamond.printDiamond("b"));
 	}
 
 	@Test
-	void printDiamondTestC() throws Exception {
+	public void printDiamondTestC() throws Exception {
 		assertEquals("\t\ta\n\tb\t\tb\nc\t\t\t\tc\n\tb\t\tb\n\t\ta\n", Diamond.printDiamond("C"));
 	}
 }
