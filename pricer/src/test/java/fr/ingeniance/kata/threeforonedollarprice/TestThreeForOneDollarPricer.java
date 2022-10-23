@@ -1,9 +1,9 @@
 package fr.ingeniance.kata.threeforonedollarprice;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import fr.ingeniance.kata.pricer.data.Item;
 import fr.ingeniance.kata.pricer.data.Product;
@@ -16,7 +16,7 @@ class TestThreeForOneDollarPricer {
 	@Test
 	void whenExceptionThrown_thenProductIsNull() throws Exception {
 
-		Item item = new Item(1L, null, 1, 0.65D);
+		Item item = new Item(null, 1, 0.65D);
 
 		ProductNotFoundException ex = assertThrows(ProductNotFoundException.class, () -> {
 			ThreeForOneDollarPricer.threeForOneDollar(item, 3);
@@ -29,8 +29,8 @@ class TestThreeForOneDollarPricer {
 	@Test
 	void whenExceptionThrown_thenItemAmountIsNegative() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, 1, -0.65D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, 1, -0.65D);
 
 		ItemErrorException ex = assertThrows(ItemErrorException.class, () -> {
 			ThreeForOneDollarPricer.threeForOneDollar(item, 3);
@@ -43,8 +43,8 @@ class TestThreeForOneDollarPricer {
 	@Test
 	void whenExceptionThrown_thenItemUnityIsNull() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, null, 1D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, null, 1D);
 
 		ItemErrorException ex = assertThrows(ItemErrorException.class, () -> {
 			ThreeForOneDollarPricer.threeForOneDollar(item, 3);
@@ -57,8 +57,8 @@ class TestThreeForOneDollarPricer {
 	@Test
 	void whenExceptionThrown_thenItemUnityIsNegative() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, -1, 1D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, -1, 1D);
 
 		ItemErrorException ex = assertThrows(ItemErrorException.class, () -> {
 			ThreeForOneDollarPricer.threeForOneDollar(item, 3);
@@ -71,19 +71,19 @@ class TestThreeForOneDollarPricer {
 	@Test
 	void printThreeForOneDollarTestWith4() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, 3, 1D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, 3, 1D);
 
-		assertEquals("Total amount : 2.0$", ThreeForOneDollarPricer.threeForOneDollar(item, 4));
+		assertEquals(2.0D, ThreeForOneDollarPricer.threeForOneDollar(item, 4));
 	}
 
 	@Test
 	void printThreeForOneDollarTestWith5() throws Exception {
 
-		Product product = new Product(1L, "P001", null, "beans");
-		Item item = new Item(1L, product, 3, 1D);
+		Product product = new Product("beans", null);
+		Item item = new Item(product, 3, 1D);
 
-		assertEquals("Total amount : 2.0$", ThreeForOneDollarPricer.threeForOneDollar(item, 5));
+		assertEquals(2.0D, ThreeForOneDollarPricer.threeForOneDollar(item, 5));
 	}
 
 }

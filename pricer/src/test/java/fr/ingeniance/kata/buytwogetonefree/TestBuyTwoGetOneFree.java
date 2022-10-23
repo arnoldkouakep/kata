@@ -1,16 +1,15 @@
 package fr.ingeniance.kata.buytwogetonefree;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import fr.ingeniance.kata.pricer.buytwogetonefree.BuyTwoGetOneFree;
 import fr.ingeniance.kata.pricer.data.Item;
 import fr.ingeniance.kata.pricer.data.Product;
-import fr.ingeniance.kata.pricer.enumeration.EnumStatus;
-import fr.ingeniance.kata.pricer.exception.ItemErrorException;
-import fr.ingeniance.kata.pricer.exception.ProductNotFoundException;
+import fr.ingeniance.kata.pricer.enumeration.WeigthUnit;
+import fr.ingeniance.kata.pricer.exception.BadUnitConversionException;
 import fr.ingeniance.kata.pricer.unitconversionpricer.UnitConversionPricer;
 
 class TestBuyTwoGetOneFree {
@@ -18,10 +17,10 @@ class TestBuyTwoGetOneFree {
 	@Test
 	void whenExceptionThrown_thenUnitIsNull() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, 1, 1D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, 1, 1D);
 
-		ProductNotFoundException ex = assertThrows(ProductNotFoundException.class, () -> {
+		BadUnitConversionException ex = assertThrows(BadUnitConversionException.class, () -> {
 			UnitConversionPricer.unitConversionPriver(item, null, 1);
 		});
 
@@ -32,35 +31,33 @@ class TestBuyTwoGetOneFree {
 	@Test
 	void whenExceptionThrown_thenUnitNotInRanger() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "bean", EnumStatus.POUND.toString());
-		Item item = new Item(1L, product, 1, 1.99D);
+		Product product = new Product("bean", "can", WeigthUnit.POUND.toString());
+		Item item = new Item(product, 1, 1.99D);
 
-		ItemErrorException ex = assertThrows(ItemErrorException.class, () -> {
+		BadUnitConversionException ex = assertThrows(BadUnitConversionException.class, () -> {
 			UnitConversionPricer.unitConversionPriver(item, "OUNCE2", 4);
 		});
 
-		assertEquals("The amount's item cannot be negative.", ex.getMessage());
+		assertEquals("The unit conversion of this item or product cannot be null.", ex.getMessage());
 
 	}
-	
+
 	@Test
 	void printBuyTwoGetOneFreeWith3() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, 1, 1D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, 1, 1D);
 
-		assertEquals("The third costs 0,75$",
-				BuyTwoGetOneFree.buyTwoGetOneFree(item, 3));
+		assertEquals(0.75D, BuyTwoGetOneFree.buyTwoGetOneFree(item, 3));
 	}
 
 	@Test
 	void printBuyTwoGetOneFreeWith7() throws Exception {
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, 1, 1D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, 1, 1D);
 
-		assertEquals("The third costs 0,70$",
-				BuyTwoGetOneFree.buyTwoGetOneFree(item, 7));
+		assertEquals(0.70D, BuyTwoGetOneFree.buyTwoGetOneFree(item, 7));
 	}
 
 }
