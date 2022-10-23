@@ -6,16 +6,4 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>diamond</artifactId>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>fr.ingeniance</groupId>
-				<artifactId>diamond</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-				<configuration>
-					<mainClass>fr.ingeniance.kata.diamond.MainApplication</mainClass>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
