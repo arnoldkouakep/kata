@@ -1,14 +1,10 @@
 package fr.ingeniance.kata.pricer.data;
 
 public class Product {
-
-	private Long id;
-
-	private String code;
+	
+	private String name;
 
 	private String conditionnement;
-
-	private String name;
 
 	private String unit;
 
@@ -16,44 +12,22 @@ public class Product {
 		super();
 	}
 
-	public Product(Long id, String code, String name) {
+	public Product(String name) {
 		super();
-		this.id = id;
-		this.code = code;
 		this.name = name;
 	}
 
-	public Product(Long id, String code, String conditionnement, String name) {
+	public Product(String name, String conditionnement) {
 		super();
-		this.id = id;
-		this.code = code;
-		this.conditionnement = conditionnement;
 		this.name = name;
+		this.conditionnement = conditionnement;
 	}
 
-	public Product(Long id, String code, String conditionnement, String name, String unit) {
+	public Product(String name, String conditionnement, String unit) {
 		super();
-		this.id = id;
-		this.code = code;
-		this.conditionnement = conditionnement;
 		this.name = name;
+		this.conditionnement = conditionnement;
 		this.unit = unit;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public String getConditionnement() {

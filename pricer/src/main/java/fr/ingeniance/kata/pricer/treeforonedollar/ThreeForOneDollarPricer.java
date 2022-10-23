@@ -12,7 +12,7 @@ public class ThreeForOneDollarPricer {
 		throw new IllegalStateException("ThreeForOneDollarPricer class");
 	}
 
-	public static String threeForOneDollar(Item item, int qte) throws ProductNotFoundException, ItemErrorException {
+	public static double threeForOneDollar(Item item, int qte) throws ProductNotFoundException, ItemErrorException {
 
 		if (item.getProduct() == null)
 			throw new ProductNotFoundException("The product of item cannot be null.");
@@ -25,12 +25,10 @@ public class ThreeForOneDollarPricer {
 
 		Double totalAmount = (qte * item.getAmount() / item.getUnity());
 
-		return new StringBuilder().append("Total amount : ")
-				.append(totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D)).append("$")
-				.toString();
+		return totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D);
 	}
 
-	public static String threeForOneDollar(List<Item> items, int qte)
+	public static double threeForOneDollar(List<Item> items, int qte)
 			throws ProductNotFoundException, ItemErrorException {
 		Double totalAmount = 0D;
 		for (Item item : items) {
@@ -46,8 +44,6 @@ public class ThreeForOneDollarPricer {
 			totalAmount += (qte * item.getAmount() / item.getUnity());
 		}
 
-		return new StringBuilder().append("Total amount : ")
-				.append(totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D)).append("$")
-				.toString();
+		return totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D);
 	}
 }

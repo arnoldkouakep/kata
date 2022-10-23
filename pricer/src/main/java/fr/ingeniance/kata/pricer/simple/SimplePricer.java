@@ -25,7 +25,7 @@ public class SimplePricer {
 				.append(item.getProduct().getName()).append(" costs ").append(item.getAmount()).append("$").toString();
 	}
 
-	public static String simplePriceOfProduct(List<Item> items) throws ProductNotFoundException, ItemErrorException {
+	public static double simplePriceOfProduct(List<Item> items) throws ProductNotFoundException, ItemErrorException {
 		Double totalAmount = 0D;
 		for (Item item : items) {
 			if (item.getProduct() == null)
@@ -36,6 +36,6 @@ public class SimplePricer {
 			totalAmount += item.getAmount();
 		}
 
-		return new StringBuilder().append("Total amount : ").append(totalAmount).append("$").toString();
+		return totalAmount;
 	}
 }

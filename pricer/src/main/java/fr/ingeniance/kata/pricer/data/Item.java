@@ -2,8 +2,6 @@ package fr.ingeniance.kata.pricer.data;
 
 public class Item {
 
-	private Long id;
-
 	private Product product;
 
 	private Integer unity;
@@ -14,20 +12,11 @@ public class Item {
 		super();
 	}
 
-	public Item(Long id, Product product, Integer unity, double amount) {
+	public Item(Product product, Integer unity, double amount) {
 		super();
-		this.id = id;
 		this.product = product;
 		this.unity = unity;
 		this.amount = amount;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Product getProduct() {

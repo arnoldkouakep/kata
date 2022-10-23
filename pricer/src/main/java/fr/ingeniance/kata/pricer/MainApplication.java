@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import fr.ingeniance.kata.pricer.buytwogetonefree.BuyTwoGetOneFree;
 import fr.ingeniance.kata.pricer.data.Item;
 import fr.ingeniance.kata.pricer.data.Product;
-import fr.ingeniance.kata.pricer.enumeration.EnumStatus;
+import fr.ingeniance.kata.pricer.enumeration.WeigthUnit;
 import fr.ingeniance.kata.pricer.exception.BadUnitConversionException;
 import fr.ingeniance.kata.pricer.exception.ItemErrorException;
 import fr.ingeniance.kata.pricer.exception.ProductNotFoundException;
@@ -20,28 +20,28 @@ public class MainApplication {
 
 	public static void main(String[] args) {
 
-		Item itemError = new Item(1L, null, null, 0.65D);
+		Item itemError = new Item(null, null, 0.65D);
 
 		printSimplePricer(itemError);
 
-		Product product = new Product(1L, "P001", "can", "beans");
-		Item item = new Item(1L, product, null, 0.65D);
+		Product product = new Product("beans", "can");
+		Item item = new Item(product, null, 0.65D);
 
 		printSimplePricer(item);
 
 		product.setConditionnement(null);
-		Item item2 = new Item(1L, product, null, 0.65D);
+		Item item2 = new Item(product, null, 0.65D);
 		printSimplePricer(item2);
 
-		Item item3 = new Item(1L, product, 3, 1D);
+		Item item3 = new Item(product, 3, 1D);
 		printThreeForOneDollarPricer(item3, 4);
 
 		printThreeForOneDollarPricer(item3, 5);
 
-		product.setUnit(EnumStatus.POUND.toString());
-		Item item4 = new Item(1L, product, 1, 1.99D);
-		printUnitConversionPricer(item4, EnumStatus.OUNCE, 4);
-		printUnitConversionPricer(item3, EnumStatus.KILOGRAMM, 4);
+		product.setUnit(WeigthUnit.POUND.toString());
+		Item item4 = new Item(product, 1, 1.99D);
+		printUnitConversionPricer(item4, WeigthUnit.OUNCE, 4);
+		printUnitConversionPricer(item3, WeigthUnit.KILOGRAMM, 4);
 
 		printBuyTwoGetOneFree(item3, 7);
 
@@ -64,9 +64,10 @@ public class MainApplication {
 	}
 
 	public static void printThreeForOneDollarPricer(final Item item, final int qte) {
+
 		logger.log(Level.INFO, () -> {
 			try {
-				return ThreeForOneDollarPricer.threeForOneDollar(item, qte);
+				return new StringBuilder().append(ThreeForOneDollarPricer.threeForOneDollar(item, qte)).toString();
 			} catch (ProductNotFoundException | ItemErrorException e) {
 				logger.log(Level.SEVERE, e.getMessage());
 				e.printStackTrace();
@@ -75,10 +76,11 @@ public class MainApplication {
 		});
 	}
 
-	public static void printUnitConversionPricer(final Item item, final EnumStatus unit, final int qte) {
+	public static void printUnitConversionPricer(final Item item, final WeigthUnit unit, final int qte) {
 		logger.log(Level.INFO, () -> {
 			try {
-				return UnitConversionPricer.unitConversionPriver(item, unit.toString(), qte);
+				return new StringBuilder().append(UnitConversionPricer.unitConversionPriver(item, unit.toString(), qte))
+						.toString();
 			} catch (ProductNotFoundException | ItemErrorException | BadUnitConversionException e) {
 				logger.log(Level.SEVERE, e.getMessage());
 				e.printStackTrace();
@@ -91,7 +93,7 @@ public class MainApplication {
 	public static void printBuyTwoGetOneFree(final Item item, final int qte) {
 		logger.log(Level.INFO, () -> {
 			try {
-				return BuyTwoGetOneFree.buyTwoGetOneFree(item, qte);
+				return new StringBuilder().append(BuyTwoGetOneFree.buyTwoGetOneFree(item, qte)).toString();
 			} catch (ProductNotFoundException | ItemErrorException e) {
 				logger.log(Level.SEVERE, e.getMessage());
 				e.printStackTrace();

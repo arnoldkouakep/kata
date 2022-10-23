@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.ingeniance.kata.pricer.data.Item;
-import fr.ingeniance.kata.pricer.enumeration.EnumStatus;
+import fr.ingeniance.kata.pricer.enumeration.WeigthUnit;
 import fr.ingeniance.kata.pricer.exception.BadUnitConversionException;
 import fr.ingeniance.kata.pricer.exception.ItemErrorException;
 import fr.ingeniance.kata.pricer.exception.ProductNotFoundException;
@@ -15,17 +15,17 @@ public class UnitConversionPricer {
 	protected static final Map<String, Double> conversionArray = new HashMap<>();
 
 	static {
-		conversionArray.put(EnumStatus.POUND.toString(), 16D);
-		conversionArray.put(EnumStatus.KILOGRAMM.toString(), 35.274D);
-		conversionArray.put(EnumStatus.GRAMM.toString(), 0.035274D);
-		conversionArray.put(EnumStatus.OUNCE.toString(), 1D);
+		conversionArray.put(WeigthUnit.POUND.toString(), 16D);
+		conversionArray.put(WeigthUnit.KILOGRAMM.toString(), 35.274D);
+		conversionArray.put(WeigthUnit.GRAMM.toString(), 0.035274D);
+		conversionArray.put(WeigthUnit.OUNCE.toString(), 1D);
 	}
 
 	private UnitConversionPricer() {
 		throw new IllegalStateException("UnitConversionPricer class");
 	}
 
-	public static String unitConversionPriver(Item item, String unit, int qte)
+	public static double unitConversionPriver(Item item, String unit, int qte)
 			throws ProductNotFoundException, ItemErrorException, BadUnitConversionException {
 
 		if (item.getProduct() == null)
@@ -47,12 +47,10 @@ public class UnitConversionPricer {
 
 		Double totalAmount = qte * item.getAmount() / nqte;
 
-		return new StringBuilder().append("Total amount : ")
-				.append(totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D)).append("$")
-				.toString();
+		return totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D);
 	}
 
-	public static String unitConversionPriverForItems(List<Item> items, String unit, int qte)
+	public static double unitConversionPriverForItems(List<Item> items, String unit, int qte)
 			throws ProductNotFoundException, ItemErrorException, BadUnitConversionException {
 		Double totalAmount = 0D;
 
@@ -78,8 +76,6 @@ public class UnitConversionPricer {
 
 			totalAmount += qte * item.getAmount() / nqte;
 		}
-		return new StringBuilder().append("Total amount : ")
-				.append(totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D)).append("$")
-				.toString();
+		return totalAmount.intValue() + (totalAmount > totalAmount.intValue() ? 1D : 0D);
 	}
 }
