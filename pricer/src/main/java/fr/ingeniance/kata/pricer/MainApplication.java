@@ -1,10 +1,13 @@
 package fr.ingeniance.kata.pricer;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import fr.ingeniance.kata.pricer.buytwogetonefree.BuyTwoGetOneFree;
 import fr.ingeniance.kata.pricer.data.Item;
+import fr.ingeniance.kata.pricer.data.Pricer;
 import fr.ingeniance.kata.pricer.data.Product;
 import fr.ingeniance.kata.pricer.enumeration.WeigthUnit;
 import fr.ingeniance.kata.pricer.exception.BadUnitConversionException;
@@ -34,9 +37,9 @@ public class MainApplication {
 		printSimplePricer(item2);
 
 		Item item3 = new Item(product, 3, 1D);
-		printThreeForOneDollarPricer(item3, 4);
+		printThreeForOneDollarPricer(Arrays.asList(new Pricer(item3, 4)));
 
-		printThreeForOneDollarPricer(item3, 5);
+		printThreeForOneDollarPricer(Arrays.asList(new Pricer(item3, 5)));
 
 		product.setUnit(WeigthUnit.POUND.toString());
 		Item item4 = new Item(product, 1, 1.99D);
@@ -63,11 +66,11 @@ public class MainApplication {
 		});
 	}
 
-	public static void printThreeForOneDollarPricer(final Item item, final int qte) {
+	public static void printThreeForOneDollarPricer(final List<Pricer> pricers) {
 
 		logger.log(Level.INFO, () -> {
 			try {
-				return new StringBuilder().append(ThreeForOneDollarPricer.threeForOneDollar(item, qte)).toString();
+				return new StringBuilder().append(ThreeForOneDollarPricer.threeForOneDollar(pricers)).toString();
 			} catch (ProductNotFoundException | ItemErrorException e) {
 				logger.log(Level.SEVERE, e.getMessage());
 				e.printStackTrace();
