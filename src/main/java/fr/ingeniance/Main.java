@@ -2,6 +2,7 @@ package fr.ingeniance;
 
 import fr.ingeniance.diamond.Diamond;
 import fr.ingeniance.foobarqix.FooBarQix;
+import fr.ingeniance.roman.Roman;
 
 import java.util.Scanner;
 
@@ -31,7 +32,7 @@ public class Main {
                     FooBarQix.mainFooBarQix();
                     break;
                 case "3":
-                    System.out.println("Roman class");
+                    Roman.mainRoman();
                     break;
                 case "4":
                     System.out.println("SuperMarket Class");
