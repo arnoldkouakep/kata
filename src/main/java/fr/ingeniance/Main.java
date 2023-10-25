@@ -3,6 +3,7 @@ package fr.ingeniance;
 import fr.ingeniance.diamond.Diamond;
 import fr.ingeniance.foobarqix.FooBarQix;
 import fr.ingeniance.roman.Roman;
+import fr.ingeniance.supermarket.SuperMarket;
 
 import java.util.Scanner;
 
@@ -24,7 +25,7 @@ public class Main {
             Scanner sc = new Scanner(System.in);
             String choice = sc.nextLine();
 
-            switch (choice) {
+            switch (choice.toLowerCase()) {
                 case "1":
                     Diamond.mainDiamond();
                     break;
@@ -35,7 +36,7 @@ public class Main {
                     Roman.mainRoman();
                     break;
                 case "4":
-                    System.out.println("SuperMarket Class");
+                    new SuperMarket().startShopping();
                     break;
                 case "q":
                     System.out.println("Thank you and see you soon !");
