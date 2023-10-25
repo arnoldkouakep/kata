@@ -2,6 +2,9 @@ package fr.ingeniance.supermarket;
 
 import fr.ingeniance.Main;
 import fr.ingeniance.supermarket.data.Product;
+import fr.ingeniance.supermarket.strategy.PricingStrategy;
+import fr.ingeniance.supermarket.strategy.QuantityPricingStrategy;
+import fr.ingeniance.supermarket.strategy.SimplePricingStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +15,8 @@ public class SuperMarket {
     public SuperMarket() {
         products = new HashMap<>();
     }
-    public void addProduct(String name, double basePrice) {
-        Product product = new Product(name, basePrice);
+    public void addProduct(String name, double basePrice, PricingStrategy pricingStrategy) {
+        Product product = new Product(name, basePrice, pricingStrategy);
         products.put(name, product);
     }
     public static void listProducts() {
@@ -79,11 +82,11 @@ public class SuperMarket {
     }
     private void openSuperMarket() {
         SuperMarket supermarket = new SuperMarket();
-        supermarket.addProduct("Beans", 0.65);
-        supermarket.addProduct("Apples", 1.99);
-        supermarket.addProduct("Bananas", 1.99);
-        supermarket.addProduct("Chocolates", 2.0);
-        supermarket.addProduct("Cheese", 1.99);
+        supermarket.addProduct("Beans", 0.65, new SimplePricingStrategy());
+        supermarket.addProduct("Apples", 1.99, new QuantityPricingStrategy(3, 1.0));
+        supermarket.addProduct("Bananas", 1.99, new QuantityPricingStrategy(3, 1.0));
+        supermarket.addProduct("Chocolates", 2.0, new SimplePricingStrategy());
+        supermarket.addProduct("Cheese", 1.99, new SimplePricingStrategy());
     }
     // Helper method to find a product by name (case-insensitive)
     private Product findProductByName(String productName) {
