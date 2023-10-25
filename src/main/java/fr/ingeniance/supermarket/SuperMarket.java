@@ -2,6 +2,7 @@ package fr.ingeniance.supermarket;
 
 import fr.ingeniance.Main;
 import fr.ingeniance.supermarket.data.Product;
+import fr.ingeniance.supermarket.strategy.BuyTwoGetOneFreePricingStrategy;
 import fr.ingeniance.supermarket.strategy.PricingStrategy;
 import fr.ingeniance.supermarket.strategy.QuantityPricingStrategy;
 import fr.ingeniance.supermarket.strategy.SimplePricingStrategy;
@@ -85,7 +86,7 @@ public class SuperMarket {
         supermarket.addProduct("Beans", 0.65, new SimplePricingStrategy());
         supermarket.addProduct("Apples", 1.99, new QuantityPricingStrategy(3, 1.0));
         supermarket.addProduct("Bananas", 1.99, new QuantityPricingStrategy(3, 1.0));
-        supermarket.addProduct("Chocolates", 2.0, new SimplePricingStrategy());
+        supermarket.addProduct("Chocolates", 2.0, new BuyTwoGetOneFreePricingStrategy());
         supermarket.addProduct("Cheese", 1.99, new SimplePricingStrategy());
     }
     // Helper method to find a product by name (case-insensitive)
