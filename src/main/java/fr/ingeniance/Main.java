@@ -1,5 +1,7 @@
 package fr.ingeniance;
 
+import fr.ingeniance.diamond.Diamond;
+
 import java.util.Scanner;
 
 public class Main {
@@ -22,7 +24,7 @@ public class Main {
 
             switch (choice) {
                 case "1":
-                    System.out.println("Diamond class");
+                    Diamond.mainDiamond();
                     break;
                 case "2":
                     System.out.println("FooBarQix class");
